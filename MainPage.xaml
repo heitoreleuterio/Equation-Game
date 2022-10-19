@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jogo_Algebra.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="Border" x:Key="defaultBorderStyle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Padding" Value="25,10,25,10"/>
+            <Setter Property="Margin" Value="3,0,0,0"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,2">
+                        <GradientStop Color="White"
+                          Offset="0.28" />
+                        <GradientStop Color="Black"
+                          Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <RoundRectangle CornerRadius="10"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Border" BasedOn="{StaticResource Key=defaultBorderStyle}" x:Key="signBorderStyle">
+            <Setter Property="WidthRequest" Value="50"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="#e55959"
+                          Offset="0.28" />
+                        <GradientStop Color="#591111"
+                          Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="15,5,15,5"/>
+        </Style>
+        <Style TargetType="Border" BasedOn="{StaticResource Key=defaultBorderStyle}" x:Key="binaryOperatorBorderStyle">
+            <Setter Property="WidthRequest" Value="50"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="#00b6ff"
+                          Offset="0.28" />
+                        <GradientStop Color="#114c56"
+                          Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="15,5,15,5"/>
+        </Style>
+        <Style TargetType="Border" BasedOn="{StaticResource Key=defaultBorderStyle}" x:Key="equalSignBorderStyle">
+            <Setter Property="WidthRequest" Value="50"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="#00ff94"
+                          Offset="0.28" />
+                        <GradientStop Color="#0c7c4e"
+                          Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="15,5,15,5"/>
+        </Style>
+        <Style TargetType="Label" x:Key="defautlLabelStyle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <Style TargetType="Button" x:Key="operationSelectionButton">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="WidthRequest" Value="70"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1.2">
+                        <GradientStop Color="#00ff94"
+                          Offset="0.28" />
+                        <GradientStop Color="#0c7c4e"
+                          Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <Grid BackgroundColor="White">
+        <Border Padding="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BackgroundColor="#d6d6d6" x:Name="bordaPrincipal">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <VerticalStackLayout>
+                <Border BackgroundColor="White" HorizontalOptions="Center" Padding="10" TranslationY="40" IsVisible="False" x:Name="selectNewOperationPopup">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout>
+                        <Button Text="+" Style="{StaticResource Key=operationSelectionButton}" Clicked="Button_Clicked"/>
+                        <Button Text="-" Style="{StaticResource Key=operationSelectionButton}" Clicked="Button_Clicked_1"/>
+                        <Button Text="×" Style="{StaticResource Key=operationSelectionButton}" Clicked="Button_Clicked_2"/>
+                        <Button Text="÷" Style="{StaticResource Key=operationSelectionButton}" Clicked="Button_Clicked_3"/>
+                    </HorizontalStackLayout>
+                </Border>
+                <HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" x:Name="leftEqual" Padding="40,80,20,80">
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <DropGestureRecognizer Drop="LeftEqualDrop"/>
+                        </HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
+                    <Border Style="{StaticResource Key=equalSignBorderStyle}" Margin="0,0,0,0" x:Name="equalSignElement">
+                        <Label Style="{StaticResource Key=defautlLabelStyle}">=</Label>
+                    </Border>
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" x:Name="rightEqual" Margin="0,0,0,0" Padding="20,80,40,80">
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <DropGestureRecognizer Drop="RightEqualDrop"/>
+                        </HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+
+</ContentPage>
