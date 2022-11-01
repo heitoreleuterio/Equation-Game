@@ -32,5 +32,13 @@ namespace Jogo_Algebra.Resources.Entidades {
                 return null;
         }
 
+        public override bool Equals(object obj) {
+            if(obj is EquationMultiplyOperator) {
+                EquationMultiplyOperator equationMultiplyOperator = obj as EquationMultiplyOperator;
+                return equationMultiplyOperator.AffectedValues.SequenceEqual(AffectedValues);
+            }
+            return false;
+        }
+
     }
 }

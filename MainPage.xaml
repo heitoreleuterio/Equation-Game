@@ -8,63 +8,8 @@
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="Padding" Value="25,10,25,10"/>
             <Setter Property="Margin" Value="3,0,0,0"></Setter>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,2">
-                        <GradientStop Color="White"
-                          Offset="0.28" />
-                        <GradientStop Color="Black"
-                          Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="StrokeShape">
-                <Setter.Value>
-                    <RoundRectangle CornerRadius="10"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="Border" BasedOn="{StaticResource Key=defaultBorderStyle}" x:Key="signBorderStyle">
-            <Setter Property="WidthRequest" Value="50"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                        <GradientStop Color="#e55959"
-                          Offset="0.28" />
-                        <GradientStop Color="#591111"
-                          Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Padding" Value="15,5,15,5"/>
-        </Style>
-        <Style TargetType="Border" BasedOn="{StaticResource Key=defaultBorderStyle}" x:Key="binaryOperatorBorderStyle">
-            <Setter Property="WidthRequest" Value="50"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                        <GradientStop Color="#00b6ff"
-                          Offset="0.28" />
-                        <GradientStop Color="#114c56"
-                          Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Padding" Value="15,5,15,5"/>
-        </Style>
-        <Style TargetType="Border" BasedOn="{StaticResource Key=defaultBorderStyle}" x:Key="equalSignBorderStyle">
-            <Setter Property="WidthRequest" Value="50"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                        <GradientStop Color="#00ff94"
-                          Offset="0.28" />
-                        <GradientStop Color="#0c7c4e"
-                          Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Padding" Value="15,5,15,5"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="StrokeThickness" Value="0"/>
         </Style>
         <Style TargetType="Label" x:Key="defautlLabelStyle">
             <Setter Property="HorizontalOptions" Value="Center"/>
@@ -92,7 +37,7 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <Grid BackgroundColor="White">
+    <Grid BackgroundColor="White" x:Name="backgroundGrid">
         <Border Padding="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BackgroundColor="#d6d6d6" x:Name="bordaPrincipal">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10"/>
@@ -109,13 +54,21 @@
                         <Button Text="÷" Style="{StaticResource Key=operationSelectionButton}" Clicked="Button_Clicked_3"/>
                     </HorizontalStackLayout>
                 </Border>
+                <Border BackgroundColor="White" HorizontalOptions="Center" Padding="10" TranslationY="40" IsVisible="False" x:Name="realizeOperationPopup">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout>
+                        <Editor Placeholder="Resultado da Operação" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Editor>
+                    </HorizontalStackLayout>
+                </Border>
                 <HorizontalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" x:Name="leftEqual" Padding="40,80,20,80">
                         <HorizontalStackLayout.GestureRecognizers>
                             <DropGestureRecognizer Drop="LeftEqualDrop"/>
                         </HorizontalStackLayout.GestureRecognizers>
                     </HorizontalStackLayout>
-                    <Border Style="{StaticResource Key=equalSignBorderStyle}" Margin="0,0,0,0" x:Name="equalSignElement">
+                    <Border Style="{StaticResource Key=defaultBorderStyle}" Margin="0,0,0,0" x:Name="equalSignElement">
                         <Label Style="{StaticResource Key=defautlLabelStyle}">=</Label>
                     </Border>
                     <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" x:Name="rightEqual" Margin="0,0,0,0" Padding="20,80,40,80">

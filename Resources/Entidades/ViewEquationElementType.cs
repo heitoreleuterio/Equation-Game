@@ -10,6 +10,7 @@ namespace Jogo_Algebra.Resources.Entidades {
         Subtract,
         Multiply,
         Divide,
-        EquationElement
+        EquationElement,
+        UnknownElementMultiplierValue
     }
 }

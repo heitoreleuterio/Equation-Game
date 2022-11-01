@@ -34,5 +34,13 @@ namespace Jogo_Algebra.Resources.Entidades {
             else
                 return null;
         }
+
+        public override bool Equals(object obj) {
+            if(obj is EquationDivideOperator) {
+                EquationDivideOperator equationDivideOperator = obj as EquationDivideOperator;
+                return equationDivideOperator.NumeratorValues.SequenceEqual(NumeratorValues) && equationDivideOperator.DenominatorValues.SequenceEqual(DenominatorValues);
+            }
+            return false;
+        }
     }
 }
